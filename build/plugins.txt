@@ -1,7 +1,5 @@
-pipeline-rest-api
 credentials
 blueocean
-momentjs
 ansible
 blueocean-rest
 pipeline-model-extensions
@@ -12,11 +10,8 @@ pipeline-stage-view
 cloud-stats
 github-branch-source
 github-api
-pam-auth
 workflow-job
-windows-slaves
 blueocean-pipeline-editor
-aws-java-sdk
 blueocean-commons
 docker-commons
 workflow-cps
@@ -40,8 +35,6 @@ cloudshare-docker
 script-security
 blueocean-jwt
 scalable-amazon-ecs
-run-condition
-github-pr-coverage-status
 github
 pipeline-input-step
 blueocean-pipeline-scm-api
@@ -59,7 +52,6 @@ github-oauth
 docker-plugin
 workflow-multibranch
 aws-codepipeline
-jquery-detached
 docker-custom-build-environment
 git-client
 aws-codecommit-trigger
@@ -68,14 +60,11 @@ jira
 hashicorp-vault-plugin
 github-organization-folder
 blueocean-dashboard
-variant
 pipeline-aggregator-view
 pubsub-light
-mercurial
 pipeline-model-declarative-agent
 external-monitor-job
 workflow-api
-sse-gateway
 mailer
 snsnotify
 blueocean-git-pipeline
@@ -106,7 +95,6 @@ cucumber-slack-notifier
 ssh-credentials
 email-ext
 ace-editor
-jackson2-api
 matrix-auth
 handlebars
 docker-workflow
@@ -135,3 +123,4 @@ blueocean-events
 role-strategy
 ssh
 ssh-agent
+swarm
