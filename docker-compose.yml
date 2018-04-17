@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+
+  jenkins:
+   image: jenkins:1.0.0
+   privileged: true
+   ports:
+    - "8080:8080"
+    - "50000:50000"
+   networks:
+    - jenkins
+   volumes:
+    - jenkins:/var/jenkins_home
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /usr/bin/docker:/usr/bin/docker
+   hostname: jenkins
+   container_name: jenkins
+   restart: always
+   environment:
+    JAVA_OPTS: "-Djava.awt.headless=true"
+    JAVA_OPTS: "-Duser.timezone='America/Sao_Paulo'"
+   logging:
+    driver: "json-file"
+    options:
+     max-size: "250m"
+     max-file: "3"
+   networks:
+    jenkins:
+     ipv4_address: 192.168.2.100
+
+volumes:
+ jenkins:
+  external:
+   name: jenkins
+
+networks:
+ jenkins:
+  driver: bridge
+  ipam:
+   config:
+    - subnet: 192.168.2.0/24
+
+
+
