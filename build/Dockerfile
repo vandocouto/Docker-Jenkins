@@ -43,7 +43,7 @@ RUN wget https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VER
     ln -s /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && \
     pip install ansible
 
-COPY 91-jenkins /etc/sudoers.d/
+COPY build/91-jenkins /etc/sudoers.d/
 
 VOLUME /var/jenkins_home
 
@@ -52,7 +52,7 @@ RUN mkdir -p /usr/share/jenkins/ref/init.groovy.d && \
     chmod +x /bin/tini && \
     echo "$TINI_SHA  /bin/tini" | sha256sum -c -
 
-COPY init.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groovy
+COPY build/init.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groovy
 
 RUN curl -fsSL ${JENKINS_URL} -o /usr/share/jenkins/jenkins.war && \ 
     echo "${JENKINS_SHA} /usr/share/jenkins/jenkins.war" | sha256sum -c - && \
@@ -62,14 +62,14 @@ EXPOSE ${http_port}
 EXPOSE ${agent_port}
 USER ${user}
 
-COPY jenkins-support /usr/local/bin/jenkins-support
-COPY jenkins.sh /usr/local/bin/jenkins.sh
+COPY build/jenkins-support /usr/local/bin/jenkins-support
+COPY build/jenkins.sh /usr/local/bin/jenkins.sh
 
 ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
 
-COPY plugins.sh /usr/local/bin/plugins.sh
-COPY install-plugins.sh /usr/local/bin/install-plugins.sh
-COPY security.groovy /usr/share/jenkins/ref/init.groovy.d/security.groovy
-COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
+COPY build/plugins.sh /usr/local/bin/plugins.sh
+COPY build/install-plugins.sh /usr/local/bin/install-plugins.sh
+COPY build/security.groovy /usr/share/jenkins/ref/init.groovy.d/security.groovy
+COPY build/plugins.txt /usr/share/jenkins/ref/plugins.txt
 
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
