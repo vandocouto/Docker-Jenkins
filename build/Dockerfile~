@@ -4,8 +4,6 @@ FROM openjdk:8-jdk
 RUN apt-get update && apt-get install -y vim-tiny jq git curl zip unzip iputils-ping telnet net-tools apt-transport-https ca-certificates curl python-pip dirmngr sudo libltdl7 && \
     rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install sudo -y
-
 ENV VAULT_VERSION 1.2.0
 ENV TERRAFORM_VERSION 0.12.6
 
