@@ -4,8 +4,6 @@ FROM openjdk:8-jdk
 RUN apt-get update && apt-get install -y vim-tiny jq git curl zip unzip iputils-ping telnet net-tools apt-transport-https ca-certificates curl python-pip dirmngr sudo libltdl7 && \
     rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install sudo -y
-
 ENV VAULT_VERSION 1.2.0
 ENV TERRAFORM_VERSION 0.12.6
 
@@ -80,7 +78,7 @@ COPY build/install-plugins.sh /usr/local/bin/install-plugins.sh
 COPY build/security.groovy /usr/share/jenkins/ref/init.groovy.d/security.groovy
 COPY build/plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN  sudo mkdir -p /root/.docker
-COPY build/config.json /root/.docker/config.json
+#COPY build/config.json /root/.docker/config.json
 
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 RUN git config --global user.email "jenkins@icasei.com.br" ;  git config --global user.name "Jenkins"
